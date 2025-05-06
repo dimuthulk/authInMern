@@ -1,25 +1,20 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import SignUp from "./src/components/Signup";
-import Login from "./src/components/Login";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Main from "./src/components/Main";
+import Signup from "./src/components/Singup";
+import Login from "./src/components/Login";
+
 
 function App() {
-  const user = localStorage.getItem("token");
-  return (
-    <BrowserRouter>
-      <Routes>
-        {user && <Route path="/" element={<Main />} />}
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<Navigate to={user ? "/" : "/login"} />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+	const user = localStorage.getItem("token");
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+	return (
+		<Routes>
+			{user && <Route path="/" element={<Main />} />}
+			<Route path="/signup" element={<Signup />} />
+			<Route path="/login" element={<Login />} />
+			<Route path="/" element={<Navigate replace to="/login" />} />
+		</Routes>
+	);
+}
 
 export default App;
