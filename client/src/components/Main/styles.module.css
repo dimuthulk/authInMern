@@ -26,6 +26,9 @@
 	margin-right: 20px;
 }
 
-.styles.main_container p {
+.main_container p {
+	font-size: 25px;
+	margin: 20px 0;
 	text-align: center;
+
 }

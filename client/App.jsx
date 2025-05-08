@@ -5,8 +5,7 @@ import Login from "./src/components/Login";
 
 
 function App() {
-	const user = localStorage.getItem("token");
-
+	const user = localStorage.getItem("name");
 	return (
 		<Routes>
 			{user && <Route path="/" element={<Main />} />}

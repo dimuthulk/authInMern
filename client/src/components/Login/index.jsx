@@ -13,20 +13,20 @@ const Login = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
 			const url = "https://login-server-e9clx.ondigitalocean.app/api/auth";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			window.location = "/";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
+			axios.post(url,data)
+			.then((res) => {
+				const name = res.data.user.firstName;
+					localStorage.setItem("name", name);
+					window.location = "/";
+			}
+			)	
+		.catch (err => {
+			if (err.response && err.response.status >= 400 && err.response.status <= 500) {
+				setError(err.response.data.message);
 			}
 		}
+		);
 	};
 
 	return (

@@ -5,9 +5,17 @@ import axios from "axios";
 
 const Main = () => {
 		const handleLogout = () => {
-			localStorage.removeItem("token");
+			localStorage.removeItem("name");
 			window.location.reload();
 		};
+
+		const [name, setName] = useState("Gest User");
+		useEffect(() => {
+			const storedName = localStorage.getItem("name");
+			if (storedName) {
+				setName(storedName);
+			}
+		}, []);
 
 		return (
 			<div className={styles.main_container}>
@@ -17,7 +25,7 @@ const Main = () => {
 						Logout
 					</button>
 				</nav>
-				<p>Hello !</p>
+				<p>Hello {name}!</p>
 			</div>
 		);
 	};
